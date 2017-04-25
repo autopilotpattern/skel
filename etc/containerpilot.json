@@ -1,0 +1,32 @@
+{
+  "consul": "{{ if .CONSUL_AGENT }}localhost{{ else }}{{ if .CONSUL }}{{ .CONSUL }}{{ else }}consul{{ end }}{{ end }}:8500",
+  "logging": {
+    "level": "INFO",
+    "format": "default",
+    "output": "stdout"
+  },
+  "preStart": [ "/usr/local/bin/manage.sh", "preStart" ],
+  "preStop": [ "/usr/local/bin/manage.sh", "preStop" ],
+  "services": [
+    {
+      "name": "APPLICATION-NAME",
+      "port": APPLICATION-PORT,
+      "health": [ "/PATH/TO/HEALTH/CHECK/EXECUTABLE", "AND", "ANY", "ARGS" ],
+      "poll": 5,
+      "ttl": 25
+    }
+  ],
+  "tasks": [],
+  "coprocesses": [{{ if .CONSUL_AGENT }}
+    {
+      "command": ["/usr/local/bin/consul", "agent",
+                  "-data-dir=/opt/consul/data",
+                  "-config-dir=/opt/consul/config",
+                  "-rejoin",
+                  "-retry-join", "{{ if .CONSUL }}{{ .CONSUL }}{{ else }}consul{{ end }}",
+                  "-retry-max", "10",
+                  "-retry-interval", "10s"],
+      "restarts": "unlimited"
+    }{{ end }}
+  ]
+}
