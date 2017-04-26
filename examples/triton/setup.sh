@@ -113,6 +113,11 @@ envcheck() {
 
     # setup environment file
     if [ ! -f "_env" ]; then
+        ###
+        # MANTA SECTION
+        # If the application in question does not need Manta for it's operation, this section 
+        # should be removed.
+        ###
         echo '# Environment variables for backups to Manta' >> _env
         echo 'MANTA_BUCKET= # an existing Manta bucket' >> _env
         echo 'MANTA_USER= # a user with access to that bucket' >> _env
@@ -127,6 +132,10 @@ envcheck() {
         # and then unmunge it in our startup script
         echo MANTA_PRIVATE_KEY=$(cat ${MANTA_PRIVATE_KEY_PATH} | tr '\n' '#') >> _env
         echo >> _env
+
+        ### 
+        # END MANTA SECTION
+        ###
 
         echo '# Consul discovery via Triton CNS' >> _env
         echo CONSUL=redis-consul.svc.${TRITON_ACCOUNT}.${TRITON_DC}.cns.joyent.com >> _env
