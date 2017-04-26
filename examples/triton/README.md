@@ -1,8 +1,6 @@
 # Autopilot Pattern Blueprint for ...
 
-Explain how to launch on Triton and be sure to include namespace
-via `-p` as well as instructions on using `setup.sh` in this directory. 
-Something along the lines of:
+Explain how to launch on Triton and be sure to include namespace via `-p` as well as instructions on using `setup.sh` in this directory.  Something along the lines of:
 
 1. [Get a Joyent account](https://my.joyent.com/landing/signup/) and [add your SSH key](https://docs.joyent.com/public-cloud/getting-started).
 2. Install [Docker](https://docs.docker.com/docker-for-mac/install/) on your laptop or other environment, as well as the [Joyent Triton CLI](https://www.joyent.com/blog/introducing-the-triton-command-line-tool).

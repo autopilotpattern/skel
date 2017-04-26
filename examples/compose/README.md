@@ -1,7 +1,6 @@
 # Autopilot Pattern Blueprint for ...
 
-Explain how to launch on local Docker daemon and be sure to include namespace
-via `-p`. Something along the lines of:
+Explain how to launch on local Docker daemon and be sure to include namespace via `-p`. Something along the lines of:
 
 To launch redis locally (on Docker for Mac as an example):
 
